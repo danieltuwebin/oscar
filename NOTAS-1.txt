@@ -15,3 +15,6 @@ https://www.codigonaranja.com/2017/como-revertir-cambios-en-git-o-regresar-a-una
 -- CONFIGURAR git
 https://www.mclibre.org/consultar/informatica/lecciones/github-repositorios.html#crear
 https://www.mclibre.org/consultar/informatica/lecciones/vsc-git-repositorio.html
+https://www.kyocode.com/2018/05/subir-codigo-a-github-con-visual-studio-code/
+
+
