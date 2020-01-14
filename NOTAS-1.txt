@@ -1,0 +1,17 @@
+
+
+/* notas importantes*/
+
+-- VERSIONES ANTERIORES
+ git log --oneline
+
+-- REVERTIR CAMBIO
+ git checkout 55df4c2 prueba.txt
+
+LINK
+https://victorhckinthefreeworld.com/2016/07/28/git-recuperar-un-archivo-o-todo-el-repositorio-a-una-version-anterior/
+https://www.codigonaranja.com/2017/como-revertir-cambios-en-git-o-regresar-a-una-version-anterior
+
+-- CONFIGURAR git
+https://www.mclibre.org/consultar/informatica/lecciones/github-repositorios.html#crear
+https://www.mclibre.org/consultar/informatica/lecciones/vsc-git-repositorio.html
