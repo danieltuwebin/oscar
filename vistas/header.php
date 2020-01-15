@@ -118,6 +118,7 @@ if(strlen(session_id()) <1)
 
               <ul class="treeview-menu">
                 <li><a href="produccion.php"><i class="fa fa-cogs"></i>Producción</a></li>
+                <li><a href="presupuesto.php"><i class="fa fa-cogs"></i> Presupuesto</a></li>                
                   </ul>
             </li>';
             }}
