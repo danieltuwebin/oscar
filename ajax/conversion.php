@@ -4,23 +4,21 @@ if (strlen(session_id()) < 1)
 
 require_once "../modelos/Conversion.php";
 
-$produccion=new Produccion();
+$conversion=new Conversion();
 
 $idproduccion=isset($_POST["idproduccion"])? limpiarCadena($_POST["idproduccion"]):"";
 $idusuario=$_SESSION["idusuario"];
-$condicionp=isset($_POST["condicionp"])? limpiarCadena($_POST["condicionp"]):"";
-$moneda=isset($_POST["moneda"])? limpiarCadena($_POST["moneda"]):"";
-$nomb_produccion=isset($_POST["nomb_produccion"])? limpiarCadena($_POST["nomb_produccion"]):"";
-$num_prod=isset($_POST["num_prod"])? limpiarCadena($_POST["num_prod"]):"";
+$idarticuloC=isset($_POST["idarticuloC"])? limpiarCadena($_POST["idarticuloC"]):"";
 $fecha_produccion=isset($_POST["fecha_produccion"])? limpiarCadena($_POST["fecha_produccion"]):"";
-$ipu_produccion=isset($_POST["ipu_produccion"])? limpiarCadena($_POST["ipu_produccion"]):"";
-$total_produccion=isset($_POST["total_produccion"])? limpiarCadena($_POST["total_produccion"]):"";
-
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idproduccion)){
-            $rspta=$produccion->insertar($idusuario,$condicionp,$moneda,$nomb_produccion,$num_prod,$fecha_produccion,$ipu_produccion,$total_produccion,$_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_venta"]);
+			$rspta=$conversion->insertar($idusuario,
+										$idarticuloC,
+										$fecha_produccion,
+										$_POST["idarticulo"],
+										$_POST["cantidad"]);
             echo $rspta ? "Producción Registrada" : "No se pudo registrar todos los datos de la Producción";
         }
         else {
@@ -28,13 +26,13 @@ switch ($_GET["op"]){
 	break;
 
 	case 'anular':
-		$rspta1=$produccion->anularActualizarStock($idproduccion);		
-		$rspta=$produccion->anular($idproduccion);
+		$rspta1=$conversion->anularActualizarStock($idproduccion);		
+		$rspta=$conversion->anular($idproduccion);
  		echo $rspta ? "Producción anulada" : "Producción no se puede anular";
 	break;
 
 	case 'mostrar':
-		$rspta=$produccion->mostrar($idproduccion);
+		$rspta=$conversion->mostrar($idproduccion);
  		//Codificar el resultado utilizando json
  		echo json_encode($rspta);
 	break;
@@ -43,7 +41,7 @@ switch ($_GET["op"]){
 		//Recibimos el idingreso
 		$id=$_GET['id'];
 
-		$rspta = $produccion->listarDetalle($id);
+		$rspta = $conversion->listarDetalle($id);
 		$total=0;
 		echo '<thead style="background-color:#A9D0F5">
                                     <th>Opciones</th>
@@ -78,10 +76,10 @@ switch ($_GET["op"]){
                       </th>
                                     
                                 </tfoot>';
-	   break;
+	break;
 
 	case 'listar':
-        $rspta=$produccion->listar();
+        $rspta=$conversion->listar();
         //Vamos a declarar un array
         $data= Array();
  
@@ -134,4 +132,16 @@ switch ($_GET["op"]){
  			"aaData"=>$data);
  		echo json_encode($results);
 	break;
+
+	case 'selectArticulo':
+		require_once "../modelos/Articulo.php";
+		$articulo = new Articulo();
+
+		$rspta = $articulo->listar();
+
+		while ($reg = $rspta->fetch_object())
+				{
+				echo '<option value=' . $reg->idarticulo . '>' . $reg->nombre . '</option>';
+				}
+	break;	
 }

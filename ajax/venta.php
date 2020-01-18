@@ -155,6 +155,7 @@ if($reg->estado=='6'){ $estadob='<span class="label bg-green">An. Acep.</span>';
 				echo '<option value=' . $reg->idpersona . '>' . $reg->nombre . '</option>';
 				}
 	break;
+	
 	case 'listarArticulosVenta':
 		require_once "../modelos/Articulo.php";
 		$articulo=new Articulo();
@@ -182,4 +183,3 @@ if($reg->estado=='6'){ $estadob='<span class="label bg-green">An. Acep.</span>';
  		echo json_encode($results);
 	break;
 }
-?>

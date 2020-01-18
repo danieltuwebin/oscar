@@ -48,8 +48,8 @@ if (!isset($_SESSION["nombre"])) {
 
                   <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <label>Nombre de producto(*):</label>
-                    <input type="hidden" name="idproduccion" id="idproduccion">
-                    <select id="nomb_produccion" name="nomb_produccion" class="form-control selectpicker" data-live-search="true" maxlength="50" required="">
+                    <input type="hidden" name="idconversion" id="idconversion">
+                    <select id="idarticuloC" name="idarticuloC" class="form-control selectpicker" data-live-search="true" maxlength="50" required="">
 
                     </select>
                   </div>

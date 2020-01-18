@@ -2,7 +2,7 @@
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
  
-Class Produccion
+Class Conversion
 {
     //Implementamos nuestro constructor
     public function __construct()
@@ -11,33 +11,29 @@ Class Produccion
     }
  
     //Implementamos un método para insertar registros
-    public function insertar($idusuario,$condicionp,$moneda,$nomb_produccion,$num_prod,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta)
+    public function insertar($idusuario,$idarticuloC,$fecha_produccion,$idarticulo,$cantidad)
     {
 
         //NUEVO GRABACION
-        $sql="INSERT INTO articulo_produccion (idarticuloproduccion, idarticulo, cantidad, cod_articulo, cod_nombre, observacion, estado)
+/*         $sql="INSERT INTO articulo_produccion (idarticuloproduccion, idarticulo, cantidad, cod_articulo, cod_nombre, observacion, estado)
         VALUES (NULL, '1', '2', '3', '5', 'WEB', '1')";
-        ejecutarConsulta_retornarID($sql);
+        ejecutarConsulta_retornarID($sql); */
 
-
-        $sql="INSERT INTO produccion (idusuario,condicionp,moneda,nomb_produccion,num_prod,fecha_produccion,ipu_produccion,total_produccion,estado)
-        VALUES ('$idusuario','$condicionp','$moneda','$nomb_produccion','$num_prod','$fecha_produccion','$ipu_produccion','$total_produccion','Aceptado')";
-        //return ejecutarConsulta($sql);
+        $sql="INSERT INTO articulo_produccion (idarticulo,cantidad,observacion,estado,usuario,fecha_grabacion) 
+        VALUES ('$idarticuloC',1,'Creado',1,'$idusuario',NOW())";
         $idproduccionnew=ejecutarConsulta_retornarID($sql);
- 
+
         $num_elementos=0;
         $sw=true;
- 
-        while ($num_elementos < count($idarticulo))
+
+         while ($num_elementos < count($idarticulo))
         {
-            $sql_detalle = "INSERT INTO detalle_produccion (idproduccion,idarticulo,cantidad,precio_venta) VALUES ('$idproduccionnew','$idarticulo[$num_elementos]','$cantidad[$num_elementos]','$precio_venta[$num_elementos]')";
-            ejecutarConsulta($sql_detalle) or $sw = false;
-            if(substr($condicionp,0,3) == "Pro"){
-				$sql_stock = "UPDATE articulo SET stock = (stock - $cantidad[$num_elementos]) WHERE idarticulo = $idarticulo[$num_elementos]";
-				ejecutarConsulta($sql_stock) or $sw = false;				
-			}			
+            $sql_detalle = "INSERT INTO articulo_produccion_detalle (idarticuloproduccion, codarticulo, cantidad, usuario, fecha_grabacion)
+            VALUES ('$idproduccionnew','$idarticulo[$num_elementos]','$cantidad[$num_elementos]','$idusuario',NOW())";
+            ejecutarConsulta($sql_detalle) or $sw = false;			
+					
 			$num_elementos=$num_elementos + 1;
-        }
+        } 
  
         return $sw;
     }
@@ -95,4 +91,3 @@ Class Produccion
     }
      
 }
-?>
