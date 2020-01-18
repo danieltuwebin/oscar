@@ -89,12 +89,13 @@ switch ($_GET["op"]){
         {  
             $data[] = array(
                 "0"=>($reg->estado=='1')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idarticuloproduccion.')"><i class="fa fa-eye"></i></button>'.'<button class="btn btn-danger" onclick="anular('.$reg->idarticuloproduccion.')"><i class="fa fa-close"></i></button>':'<button class="btn btn-warning" onclick="mostrar('.$reg->idarticuloproduccion.')"><i class="fa fa-eye"></i></button>',
-        		"1"=>$reg->idarticulo,
-        		"2"=>$reg->nombre,
- 				"3"=>$reg->observacion,
- 				"4"=>$reg->usuario,
- 				"5"=>$reg->fecha_grabacion,
-                "6"=>($reg->estado=='1')?'<span class="label bg-green">Aceptado</span>':
+				"1"=>$reg->codarticuloproduccion,				
+				"2"=>$reg->codidarticulo,
+        		"3"=>$reg->nombre,
+ 				"4"=>$reg->observacion,
+ 				"5"=>$reg->usuario,
+ 				"6"=>$reg->fecha_grabacion,
+                "7"=>($reg->estado=='1')?'<span class="label bg-green">Aceptado</span>':
                 '<span class="label bg-red">Anulado</span>'
                 );
            }
@@ -105,14 +106,9 @@ switch ($_GET["op"]){
             "aaData"=>$data);
         echo json_encode($results);
  
-       break;
+    break;
  
-
-
-
-
-
-      case 'listarArticulosProduccion':
+    case 'listarArticulosConversion':
 		     require_once "../modelos/Articulo.php";
 		    $articulo=new Articulo();
 
@@ -122,13 +118,13 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 			"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idarticulo.',\''.$reg->nombre.'\',\''.$reg->precio_venta.'\')"><span class="fa fa-plus"></span></button>',
-        "1"=>$reg->nombre,
-        "2"=>$reg->categoria,
-        "3"=>$reg->codigo,
-        "4"=>$reg->stock.'   '.$reg->medida,
-        "5"=>$reg->precio_venta,
-        "6"=>"<img src='../files/articulos/".$reg->imagen."' height='50px' width='50px' >"
+ 			"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idarticulo.',\''.$reg->nombre.'\',\''.$reg->medida.'\',\''.$reg->precio_venta.'\')"><span class="fa fa-plus"></span></button>',
+        	"1"=>$reg->nombre,
+        	"2"=>$reg->categoria,
+        	"3"=>$reg->codigo,
+        	"4"=>$reg->stock.'   '.$reg->medida,
+        	"5"=>$reg->precio_venta,
+        	"6"=>"<img src='../files/articulos/".$reg->imagen."' height='50px' width='50px' >"
  				);
  		   }
  		$results = array(
@@ -139,4 +135,3 @@ switch ($_GET["op"]){
  		echo json_encode($results);
 	break;
 }
-?>

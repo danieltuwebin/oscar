@@ -47,7 +47,7 @@ function mostrarform(flag)
 		$("#formularioregistros").show();
 		//$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
-		listarArticulosProduccion();
+		listarArticulosConversion();
 
 		$("#btnGuardar").hide();
 
@@ -102,7 +102,7 @@ function listar()
 
 
 //Función ListarArticulos
-function listarArticulosProduccion()
+function listarArticulosConversion()
 {
 	tabla=$('#tblarticulos').dataTable(
 	{
@@ -114,7 +114,7 @@ function listarArticulosProduccion()
 		        ],
 		"ajax":
 				{
-					url: '../ajax/produccion.php?op=listarArticulosProduccion',
+					url: '../ajax/conversion.php?op=listarArticulosConversion',
 					type : "get",
 					dataType : "json",						
 					error: function(e){
@@ -135,7 +135,7 @@ function guardaryeditar(e)
 	var formData = new FormData($("#formulario")[0]);
 
 	$.ajax({
-		url: "../ajax/produccion.php?op=guardaryeditar",
+		url: "../ajax/conversion.php?op=guardaryeditar",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
@@ -200,8 +200,9 @@ var detalles=0;
 //$("#guardar").hide();
 $("#btnGuardar").hide();
 
-function agregarDetalle(idarticulo,articulo,precio_venta)
+function agregarDetalle(idarticulo,articulo,medida,precio_venta)
   {
+	console.log(idarticulo,articulo,medida,precio_venta);
   	var cantidad=1;
     
     if (articulo!="")
@@ -210,17 +211,17 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     	var subtotal=cantidad*precio_venta;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
-    	'<td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
-    	'<td><input type="decimal number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
-    	'<td><input type="decimal number" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
-    	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
-        '<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>';
+		'<td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
+		'<td><input type="hidden" name="medida[]" value="'+medida+'">'+medida+'</td>'+
+    	'<td><input type="decimal number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>';
     	'</tr>'
         
     	cont++;
-    	detalles=detalles+1;
+		detalles=detalles+1;
+		$("#btnGuardar").show();
     	$('#detalles').append(fila);
-    	modificarSubototales();
+		//modificarSubototales();
+		
 
     }
     else 
@@ -232,7 +233,7 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
       
      
 
-   function modificarSubototales()
+  function modificarSubototales()
   {
     var cant = document.getElementsByName("cantidad[]");
     var prec = document.getElementsByName("precio_venta[]");

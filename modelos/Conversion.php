@@ -72,10 +72,14 @@ Class Produccion
     //Implementar un método para listar los registros
     public function listar()
     {
+        /*
        $sql="SELECT tap.idarticuloproduccion,tap.idarticulo,ta.nombre,tap.observacion,tap.usuario,tap.fecha_grabacion 
             FROM articulo_produccion tap LEFT JOIN articulo ta ON tap.idarticulo = ta.idarticulo
             ORDER BY tap.idarticuloproduccion DESC";
            return ejecutarConsulta($sql);
+        */           
+           $sql="CALL DECO_LISTAR_ARTICULOS_PRODUCIDOS()";
+          return ejecutarConsulta($sql);           
 
     } 
 
