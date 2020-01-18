@@ -47,8 +47,6 @@ switch ($_GET["op"]){
                                     <th>Opciones</th>
                                     <th>Artículo</th>
                                     <th>Cantidad</th>
-                                    <th>Precio venta.</th>
-                                    <th>Subtotal</th>
               </thead>';
 
 		while ($reg = $rspta->fetch_object())
@@ -57,10 +55,8 @@ switch ($_GET["op"]){
 							<td></td>
 							<td>'.$reg->nombre.'</td>
 							<td>'.$reg->cantidad.'</td>
-							<td>'.$reg->precio_venta.'</td>
-							<td>'.$reg->precio_venta*$reg->cantidad.'</td>
 						</tr>';
-					$total=$total+($reg->precio_venta*$reg->cantidad);
+					//$total=$total+($reg->precio_venta*$reg->cantidad);
    
 				}
         
@@ -68,13 +64,7 @@ switch ($_GET["op"]){
 				echo '<tfoot>
                       <th></th>
                       <th></th>
-                      <th></th>
-                      <th>TOTAL</th>
-                      <th>
-                      	<h4 id="total"> .'.$total.'</h4>
-                      	<input type="hidden" name="total_produccion" id="total_produccion">
-                      </th>
-                                    
+                      <th></th>                                   
                                 </tfoot>';
 	break;
 

@@ -150,7 +150,7 @@ if (!isset($_SESSION["nombre"])) {
 
   require 'footer.php';
   ?>
-  <script type="text/javascript" src="scripts/conversion.js"></script>
+  <script type="text/javascript" src="scripts/conversion.js?1.1.0"></script>
 <?php
 }
 ob_end_flush();

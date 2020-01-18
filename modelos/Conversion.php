@@ -14,11 +14,6 @@ Class Conversion
     public function insertar($idusuario,$idarticuloC,$fecha_produccion,$idarticulo,$cantidad)
     {
 
-        //NUEVO GRABACION
-/*         $sql="INSERT INTO articulo_produccion (idarticuloproduccion, idarticulo, cantidad, cod_articulo, cod_nombre, observacion, estado)
-        VALUES (NULL, '1', '2', '3', '5', 'WEB', '1')";
-        ejecutarConsulta_retornarID($sql); */
-
         $sql="INSERT INTO articulo_produccion (idarticulo,cantidad,observacion,estado,usuario,fecha_grabacion) 
         VALUES ('$idarticuloC',1,'Creado',1,'$idusuario',NOW())";
         $idproduccionnew=ejecutarConsulta_retornarID($sql);
@@ -55,25 +50,24 @@ Class Conversion
     //Implementar un método para mostrar los datos de un registro a modificar
     public function mostrar($idproduccion)
     {
-        $sql="SELECT p.idproduccion,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion, u.idusuario, u.nombre as usuario, p.num_prod, p.ipu_produccion, p.total_produccion, p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario WHERE p.idproduccion='$idproduccion'";
+        $sql="SELECT p.idarticuloproduccion,DATE(p.fecha_grabacion) as fecha,a.idarticulo,a.nombre, u.idusuario, u.nombre as usuario,p.estado 
+        FROM articulo_produccion p LEFT JOIN usuario u ON p.usuario=u.idusuario
+        LEFT JOIN articulo a ON a.idarticulo = p.idarticulo
+        WHERE p.idarticuloproduccion='$idproduccion'";
         return ejecutarConsultaSimpleFila($sql);
     }
 
     public function listarDetalle($idproduccion)
     {
-        $sql="SELECT dp.idproduccion,dp.idarticulo,a.nombre,dp.cantidad,dp.precio_venta,(dp.cantidad*dp.precio_venta) as subtotal FROM detalle_produccion dp inner join articulo a on dp.idarticulo=a.idarticulo where dp.idproduccion='$idproduccion'";
+        $sql="SELECT dp.idarticuloproduccion,dp.codarticulo,a.nombre,dp.cantidad
+        FROM articulo_produccion_detalle dp inner join articulo a on dp.codarticulo=a.idarticulo where dp.idarticuloproduccion='$idproduccion'";
             return ejecutarConsulta($sql);
     }
  
     //Implementar un método para listar los registros
     public function listar()
     {
-        /*
-       $sql="SELECT tap.idarticuloproduccion,tap.idarticulo,ta.nombre,tap.observacion,tap.usuario,tap.fecha_grabacion 
-            FROM articulo_produccion tap LEFT JOIN articulo ta ON tap.idarticulo = ta.idarticulo
-            ORDER BY tap.idarticuloproduccion DESC";
-           return ejecutarConsulta($sql);
-        */           
+        
            $sql="CALL DECO_LISTAR_ARTICULOS_PRODUCIDOS()";
           return ejecutarConsulta($sql);           
 

@@ -149,17 +149,13 @@ function guardaryeditar(e) {
 }
 
 function mostrar(idproduccion) {
-	$.post("../ajax/produccion.php?op=mostrar", { idproduccion: idproduccion }, function (data, status) {
+	$.post("../ajax/conversion.php?op=mostrar", { idproduccion: idproduccion }, function (data, status) {
+		console.log(data);
 		data = JSON.parse(data);
 		mostrarform(true);
 
-		$("#condicionp").val(data.condicionp);
-		$("#moneda").val(data.moneda);
-		$("#nomb_produccion").val(data.nomb_produccion);
-		$("#num_prod").val(data.num_prod);
+		$("#idarticuloC").val(data.idarticulo);
 		$("#fecha_produccion").val(data.fecha);
-		$("#ipu_produccion").val(data.ipu_produccion);
-		$("#total_produccion").val(data.total_produccion);
 
 		//Ocultar y mostrar los botones
 		$("#btnGuardar").hide();
@@ -167,7 +163,7 @@ function mostrar(idproduccion) {
 		$("#btnAgregarArt").hide();
 	});
 
-	$.post("../ajax/produccion.php?op=listarDetalle&id=" + idproduccion, function (r) {
+	$.post("../ajax/conversion.php?op=listarDetalle&id=" + idproduccion, function (r) {
 		$("#detalles").html(r);
 	});
 }
