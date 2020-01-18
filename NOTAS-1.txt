@@ -18,3 +18,7 @@ https://www.mclibre.org/consultar/informatica/lecciones/vsc-git-repositorio.html
 https://www.kyocode.com/2018/05/subir-codigo-a-github-con-visual-studio-code/
 
 
+
+/* empieza proceso de modificacion 160120 */
+
+-- crear un nuevo idPermiso con codigo 10 en la TBL usuario_permiso
