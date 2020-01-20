@@ -45,7 +45,8 @@ switch ($_GET["op"]){
 		$total=0;
 		echo '<thead style="background-color:#A9D0F5">
                                     <th>Opciones</th>
-                                    <th>Artículo</th>
+									<th>Artículo</th>
+									<th>Medida</th>  
                                     <th>Cantidad</th>
               </thead>';
 
@@ -54,17 +55,18 @@ switch ($_GET["op"]){
 					echo '<tr class="filas">
 							<td></td>
 							<td>'.$reg->nombre.'</td>
+							<td>'.$reg->medida.'</td>							
 							<td>'.$reg->cantidad.'</td>
 						</tr>';
 					//$total=$total+($reg->precio_venta*$reg->cantidad);
    
 				}
-        
-                 
+
 				echo '<tfoot>
                       <th></th>
                       <th></th>
-                      <th></th>                                   
+					  <th></th>
+                      <th></th>  					                                    
                                 </tfoot>';
 	break;
 

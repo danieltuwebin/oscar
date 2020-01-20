@@ -13,6 +13,7 @@ function init() {
 	//Cargamos los items al select proveedor
 	$.post("../ajax/conversion.php?op=selectArticulo", function (r) {
 		$("#idarticuloC").html(r);
+		console.log(r);
 		$('#idarticuloC').selectpicker('refresh');
 	});
 
@@ -154,7 +155,10 @@ function mostrar(idproduccion) {
 		data = JSON.parse(data);
 		mostrarform(true);
 
-		$("#idarticuloC").val(data.idarticulo);
+		//$("#idarticuloC").val(data.idarticulo);
+		$('select[name=idarticuloC]').val(data.idarticulo);
+		$('.selectpicker').selectpicker('refresh')
+		console.log(data.idarticulo);
 		$("#fecha_produccion").val(data.fecha);
 
 		//Ocultar y mostrar los botones

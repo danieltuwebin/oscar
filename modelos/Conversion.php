@@ -59,7 +59,7 @@ Class Conversion
 
     public function listarDetalle($idproduccion)
     {
-        $sql="SELECT dp.idarticuloproduccion,dp.codarticulo,a.nombre,dp.cantidad
+        $sql="SELECT dp.idarticuloproduccion,dp.codarticulo,a.medida,a.nombre,dp.cantidad
         FROM articulo_produccion_detalle dp inner join articulo a on dp.codarticulo=a.idarticulo where dp.idarticuloproduccion='$idproduccion'";
             return ejecutarConsulta($sql);
     }
