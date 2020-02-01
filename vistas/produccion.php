@@ -107,6 +107,7 @@ if (!isset($_SESSION["nombre"])) {
 
 
                   <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                  <label for=imputPlaca style="color:#FFFFFF";>x</label>
                     <a data-toggle="modal" href="#myModal">
                       <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-search"></span> Agregar Artículos</button>
                     </a>

@@ -304,5 +304,9 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
   	detalles=detalles-1;
   	evaluar()
   }
+
+  $( "#idarticuloC" ).change(function() {
+	alert( this.value );	
+  });
  
 init();
