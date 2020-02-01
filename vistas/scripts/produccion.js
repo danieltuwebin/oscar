@@ -11,6 +11,13 @@ function init(){
 		guardaryeditar(e);	
 	});
 
+	//Cargamos los items al select producto
+	$.post("../ajax/produccion.php?op=selectArticulo", function (r) {
+		$("#idarticuloC").html(r);
+		console.log(r);
+		$('#idarticuloC').selectpicker('refresh');
+	});	
+
 }
 
 //Función limpiar

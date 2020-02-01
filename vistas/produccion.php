@@ -19,7 +19,7 @@ if (!isset($_SESSION["nombre"])) {
           <div class="col-md-12">
             <div class="box">
               <div class="box-header with-border">
-                <h1 class="box-title">Transformación <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"> <i class="fa fa-plus-circle"></i>Agregar</button></h1>
+                <h1 class="box-title">Producción <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"> <i class="fa fa-plus-circle"></i>Agregar</button></h1>
                 <div class="box-tools pull-right">
                 </div>
               </div>
@@ -32,7 +32,7 @@ if (!isset($_SESSION["nombre"])) {
                     <th>Condicion</th>
                     <th>Fecha de producción</th>
                     <th>Nombre de producto</th>
-                    <th>Medidas</th>                    
+                    <th>Medidas</th>
                     <th>Usuario</th>
                     <th>Nº de produccion</th>
                     <th>Ipu prod</th>
@@ -65,11 +65,18 @@ if (!isset($_SESSION["nombre"])) {
                       <option value="DOLARES AMERICANOS">Dolares</option>
                     </select>
                   </div>
+                  <!--
                   <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Nombre de producto(*):</label>
                     <input type="hidden" name="idproduccion" id="idproduccion">
                     <input type="text" class="form-control" name="nomb_produccion" id="nomb_produccion" maxlength="50" placeholder="nombre de producto" style="text-align:center;" required="">
-
+                  </div>
+                  -->
+                  <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Nombre de producto(*):</label>
+                    <input type="hidden" name="idproduccion" id="idproduccion">
+                    <select id="idarticuloC" name="idarticuloC" class="form-control selectpicker" data-live-search="true" maxlength="50" required="">
+                    </select>
                   </div>
 
                   <div class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-12">
@@ -84,7 +91,7 @@ if (!isset($_SESSION["nombre"])) {
                   <div class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-12">
                     <label>Med. alto(*):</label>
                     <input type="number" class="form-control" name="medida_alto" id="medida_alto" required="">
-                  </div>                                    
+                  </div>
 
                   <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                     <label>Nº de prod.</label>

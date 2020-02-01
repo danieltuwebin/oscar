@@ -31,3 +31,7 @@ ta.nombre,tap.observacion,tap.usuario,tap.fecha_grabacion
             ORDER BY tap.idarticuloproduccion DESC;
 END$$
 DELIMITER ;
+
+
+
+ALTER TABLE `produccion` ADD `med_ancho` INT NOT NULL DEFAULT '0' AFTER `num_prod`, ADD `med_alto` INT NOT NULL DEFAULT '0' AFTER `med_ancho`;

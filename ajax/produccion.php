@@ -140,4 +140,19 @@ switch ($_GET["op"]) {
 		);
 		echo json_encode($results);
 		break;
+
+		case 'selectArticulo':
+			require_once "../modelos/Articulo.php";
+			$articulo = new Articulo();
+	
+			$rspta = $articulo->listar_articulos_convertidos();
+	
+			while ($reg = $rspta->fetch_object())
+					{
+					echo '<option value=' . $reg->idarticuloproduccion . '>' . $reg->nombre . '</option>';
+					}
+		break;			
 }
+
+
+

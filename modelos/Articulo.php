@@ -52,6 +52,14 @@ Class Articulo
 		$sql="SELECT a.idarticulo,a.idcategoria,c.nombre as categoria,a.codigo,a.nombre,a.stock,a.medida,a.presentacion,a.descripcion,a.imagen,a.condicion FROM articulo a INNER JOIN categoria c ON a.idcategoria=c.idcategoria";
 		return ejecutarConsulta($sql);		
 	}
+
+	public function listar_articulos_convertidos(){
+		$sql="SELECT a.idarticuloproduccion,a.idarticulo,ar.nombre,a.cantidad,a.observacion,a.estado,a.usuario,a.fecha_grabacion FROM articulo_produccion a LEFT JOIN articulo ar ON a.idarticulo = ar.idarticulo";
+		return ejecutarConsulta($sql);
+	}
+
+
+
 	public function listarprecio()
 	{
 		$sql="SELECT a.idarticulo,a.idcategoria,c.nombre as categoria,a.codigo,a.nombre,a.stock,a.medida,a.presentacion,(SELECT precio_venta FROM detalle_ingreso WHERE idarticulo=a.idarticulo order by iddetalle_ingreso desc limit 0,1) as precio_venta,a.descripcion,a.imagen,a.condicion FROM articulo a INNER JOIN categoria c ON a.idcategoria=c.idcategoria WHERE a.condicion='1'";
