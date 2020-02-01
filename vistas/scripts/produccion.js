@@ -20,6 +20,8 @@ function limpiar()
 	$("#condicionp").val("");
 	$("#moneda").val("");
 	$("#nomb_produccion").val("");
+	$("#medida_ancho").val("");
+	$("#medida_alto").val("");
 	$("#num_prod").val("");
 	$("#ipu_produccion").val("");
 	$("#total_produccion").val("");

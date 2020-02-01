@@ -72,7 +72,8 @@ Class Produccion
     //Implementar un método para listar los registros
     public function listar()
     {
-       $sql="SELECT p.idproduccion,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion,u.idusuario,u.nombre as usuario,p.num_prod,p.ipu_produccion,p.total_produccion,p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario  ORDER by p.idproduccion desc";
+       //$sql="SELECT p.idproduccion,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion,u.idusuario,u.nombre as usuario,p.num_prod,p.ipu_produccion,p.total_produccion,p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario  ORDER by p.idproduccion desc";
+       $sql="SELECT p.idproduccion,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion,CONCAT(p.med_ancho,' x ',p.med_alto) AS medida,u.idusuario,u.nombre as usuario,p.num_prod,p.ipu_produccion,p.total_produccion,p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario  ORDER by p.idproduccion desc";       
            return ejecutarConsulta($sql);
 
     } 
