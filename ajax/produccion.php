@@ -51,7 +51,6 @@ switch ($_GET["op"]) {
                                     <th>Precio venta.</th>
                                     <th>Subtotal</th>
               </thead>';
-
 		while ($reg = $rspta->fetch_object()) {
 			echo '<tr class="filas">
 							<td></td>
@@ -62,8 +61,6 @@ switch ($_GET["op"]) {
 						</tr>';
 			$total = $total + ($reg->precio_venta * $reg->cantidad);
 		}
-
-
 		echo '<tfoot>
                       <th></th>
                       <th></th>
@@ -72,9 +69,8 @@ switch ($_GET["op"]) {
                       <th>
                       	<h4 id="total"> .' . $total . '</h4>
                       	<input type="hidden" name="total_produccion" id="total_produccion">
-                      </th>
-                                    
-                                </tfoot>';
+                      </th>    
+               </tfoot>';
 		break;
 
 	case 'listar':
@@ -88,7 +84,7 @@ switch ($_GET["op"]) {
 				"1" => $reg->condicionp,
 				"2" => $reg->fecha,
 				"3" => $reg->nomb_produccion,
-				"4" => $reg->medida,				
+				"4" => $reg->medida,
 				"5" => $reg->usuario,
 				"6" => $reg->num_prod,
 				"7" => $reg->ipu_produccion,
@@ -109,50 +105,51 @@ switch ($_GET["op"]) {
 		break;
 
 
+	case 'listarArticulosProduccion_x_idconvertidos':
+		require_once "../modelos/Articulo.php";
+		$articulo = new Articulo();
+		$rspta = $articulo->listarArticulosProduccion_x_idconvertidos($idproduccion);
+		$total = 0;
+		$cont = 0;
+		echo '<thead style="background-color:#A9D0F5">
+                                    <th>Id</th>
+                                    <th>Artículo</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio venta.</th>
+                                    <th>Subtotal</th>
+              </thead>';
+		while ($reg = $rspta->fetch_object()) {
+			echo '<tr class="filas" id="fila' . $cont . '">>
+							<td><input type="hidden" name="idarticulo[]" value="' . $reg->codarticulo . '">' . $reg->codarticulo . '</td>
+							<td>' . $reg->nombre . '</td>
+							<td><input type="decimal number" name="cantidad[]" id="cantidad[]" value="' . $reg->cantidad . '"></td>
+							<td><input type="decimal number" name="precio_venta[]" id="precio_venta[]" value="' . $reg->precio_venta . '"></td>							
+							<td><span name="subtotal" id="subtotal' . $cont . '">' . $reg->cantidad * $reg->precio_venta . '</span></td>							
+							<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td> 
+						</tr>';
+			$total = $total + ($reg->cantidad * $reg->precio_venta);
+			++$cont;
+		}
+		echo '<tfoot>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th>TOTAL</th>
+                      <th>
+                      	<h4 id="total"> .' . $total . '</h4>
+                      	<input type="hidden" name="total_produccion" id="total_produccion">
+                      </th>      
+               </tfoot>';
+		break;
 
-
-
-
-	case 'listarArticulosProduccion':
+	case 'selectArticulo':
 		require_once "../modelos/Articulo.php";
 		$articulo = new Articulo();
 
-		$rspta = $articulo->listarActivosProduccion();
-		//Vamos a declarar un array
-		$data = array();
+		$rspta = $articulo->listar_articulos_convertidos();
 
 		while ($reg = $rspta->fetch_object()) {
-			$data[] = array(
-				"0" => '<button class="btn btn-warning" onclick="agregarDetalle(' . $reg->idarticulo . ',\'' . $reg->nombre . '\',\'' . $reg->precio_venta . '\')"><span class="fa fa-plus"></span></button>',
-				"1" => $reg->nombre,
-				"2" => $reg->categoria,
-				"3" => $reg->codigo,
-				"4" => $reg->stock . '   ' . $reg->medida,
-				"5" => $reg->precio_venta,
-				"6" => "<img src='../files/articulos/" . $reg->imagen . "' height='50px' width='50px' >"
-			);
+			echo '<option value=' . $reg->idarticuloproduccion . '>' . $reg->nombre . '</option>';
 		}
-		$results = array(
-			"sEcho" => 1, //Información para el datatables
-			"iTotalRecords" => count($data), //enviamos el total registros al datatable
-			"iTotalDisplayRecords" => count($data), //enviamos el total registros a visualizar
-			"aaData" => $data
-		);
-		echo json_encode($results);
 		break;
-
-		case 'selectArticulo':
-			require_once "../modelos/Articulo.php";
-			$articulo = new Articulo();
-	
-			$rspta = $articulo->listar_articulos_convertidos();
-	
-			while ($reg = $rspta->fetch_object())
-					{
-					echo '<option value=' . $reg->idarticuloproduccion . '>' . $reg->nombre . '</option>';
-					}
-		break;			
 }
-
-
-
