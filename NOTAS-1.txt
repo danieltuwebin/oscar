@@ -25,3 +25,21 @@ https://www.kyocode.com/2018/05/subir-codigo-a-github-con-visual-studio-code/
 
 
 -- TEST ACTUALIZACIÓN  11-02-2020
+
+
+------------------- proceso
+
+*obtener idarticuloproduccion
+
+->1 inst T produccion
+INSERT INTO produccion(idproduccion, idarticuloproduccion, idusuario, condicionp, moneda, nomb_produccion, num_prod, med_ancho, med_alto, fecha_produccion, ipu_produccion, total_produccion, estado)
+VALUES ([value-1],[new],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12])
+
+->2 inst T detalle_produccion
+INSERT INTO detalle_produccion(iddetalle_produccion, idproduccion, idarticulo, cantidad, precio_venta) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5])
+
+* ACTUL PRECIO 2
+* VALIDR SI ES VENT O PROF
+
+->3 inst T articulo
+INSERT INTO articulo(idarticulo,idcategoria,codigo,nombre,stock,medida,presentacion,descripcion,imagen,condicion,condicion_prod) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
