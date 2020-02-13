@@ -113,7 +113,8 @@ switch ($_GET["op"]) {
 		$cont = 0;
 		echo '<thead style="background-color:#A9D0F5">
                                     <th>Id</th>
-                                    <th>Artículo</th>
+									<th>Artículo</th>
+                                    <th>Medida</th>									
                                     <th>Cantidad</th>
                                     <th>Precio venta.</th>
                                     <th>Subtotal</th>
@@ -122,6 +123,7 @@ switch ($_GET["op"]) {
 			echo '<tr class="filas" id="fila' . $cont . '">>
 							<td><input type="hidden" name="idarticulo[]" value="' . $reg->codarticulo . '">' . $reg->codarticulo . '</td>
 							<td>' . $reg->nombre . '</td>
+							<td>' . $reg->medida . '</td>							
 							<td><input type="decimal number" name="cantidad[]" id="cantidad[]" value="' . $reg->cantidad . '"></td>
 							<td><input type="decimal number" name="precio_venta[]" id="precio_venta[]" value="' . $reg->precio_venta . '"></td>							
 							<td><span name="subtotal" id="subtotal' . $cont . '">' . $reg->cantidad * $reg->precio_venta . '</span></td>							

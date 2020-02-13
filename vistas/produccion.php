@@ -118,6 +118,7 @@ if (!isset($_SESSION["nombre"])) {
                       <thead style="background-color:#A9D0F5">
                         <th>Id</th>
                         <th>Artículo</th>
+                        <th>Medida</th>                        
                         <th>Cantidad</th>
                         <th>Precio Prod</th>
                         <th>Subtotal</th>
@@ -125,6 +126,7 @@ if (!isset($_SESSION["nombre"])) {
 
                       <tfoot>
                         <th></th>
+                        <th></th>                        
                         <th></th>
                         <th></th>
                         <th>TOTAL</th>
