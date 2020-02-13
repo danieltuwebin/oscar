@@ -14,7 +14,14 @@ Class Produccion
     public function insertar($idusuario,$condicionp,$moneda,$nomb_produccion,$num_prod,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta)
     {
 
-        $sql="INSERT INTO produccion(idproduccion, idarticuloproduccion, idusuario, condicionp, moneda, nomb_produccion, num_prod, med_ancho, med_alto, fecha_produccion, ipu_produccion, total_produccion, estado)       
+        //NUEVO GRABACION
+        /*
+        $sql="INSERT INTO articulo_produccion (idarticuloproduccion, idarticulo, cantidad, cod_articulo, cod_nombre, observacion, estado)
+        VALUES (NULL, '1', '2', '3', '5', 'WEB', '1')";
+        ejecutarConsulta_retornarID($sql);
+        */
+
+        $sql="INSERT INTO produccion (idusuario,condicionp,moneda,nomb_produccion,num_prod,fecha_produccion,ipu_produccion,total_produccion,estado)
         VALUES ('$idusuario','$condicionp','$moneda','$nomb_produccion','$num_prod','$fecha_produccion','$ipu_produccion','$total_produccion','Aceptado')";
         //return ejecutarConsulta($sql);
         $idproduccionnew=ejecutarConsulta_retornarID($sql);
