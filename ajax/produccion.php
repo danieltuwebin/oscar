@@ -20,7 +20,7 @@ $total_produccion = isset($_POST["total_produccion"]) ? limpiarCadena($_POST["to
 switch ($_GET["op"]) {
 	case 'guardaryeditar':
 		if (empty($idproduccion)) {
-			$rspta = $produccion->insertar($idusuario, $condicionp, $moneda, $nomb_produccion, $num_prod, $fecha_produccion, $ipu_produccion, $total_produccion, $_POST["idarticulo"], $_POST["cantidad"], $_POST["precio_venta"]);
+			$rspta = $produccion->insertar($idproduccion, $idusuario, $condicionp, $moneda, $nomb_produccion, $num_prod, $fecha_produccion, $ipu_produccion, $total_produccion, $_POST["idarticulo"], $_POST["cantidad"], $_POST["precio_venta"]);
 			echo $rspta ? "Producción Registrada" : "No se pudo registrar todos los datos de la Producción";
 		} else {
 		}

@@ -11,11 +11,11 @@ Class Produccion
     }
  
     //Implementamos un método para insertar registros
-    public function insertar($idusuario,$condicionp,$moneda,$nomb_produccion,$num_prod,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta)
+    public function insertar($idproduccion,$idusuario,$condicionp,$moneda,$nomb_produccion,$num_prod,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta)
     {
 
-        $sql="INSERT INTO produccion(idproduccion, idarticuloproduccion, idusuario, condicionp, moneda, nomb_produccion, num_prod, med_ancho, med_alto, fecha_produccion, ipu_produccion, total_produccion, estado)       
-        VALUES ('$idusuario','$condicionp','$moneda','$nomb_produccion','$num_prod','$fecha_produccion','$ipu_produccion','$total_produccion','Aceptado')";
+        $sql="INSERT INTO produccion(idarticuloproduccion, idusuario, condicionp, moneda, nomb_produccion, num_prod, med_ancho, med_alto, fecha_produccion, ipu_produccion, total_produccion, estado)       
+        VALUES ('$idproduccion','$idusuario','$condicionp','$moneda','$nomb_produccion','$num_prod','$fecha_produccion','$ipu_produccion','$total_produccion','Aceptado')";
         //return ejecutarConsulta($sql);
         $idproduccionnew=ejecutarConsulta_retornarID($sql);
  
