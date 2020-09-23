@@ -3,10 +3,12 @@
 define("DB_HOST","localhost");
 
 //Nombre de la base de datos
-define("DB_NAME","decoshad_decos");
+//define("DB_NAME","decoshad_decos");
+define("DB_NAME","sisoscar_decos");
 
 //Usuario de la base de datos
-define("DB_USERNAME","decoshad_usdeco1");
+//define("DB_USERNAME","decoshad_usdeco1");
+define("DB_USERNAME","sisoscar_usdeco1");
 
 //Contrase帽a del usuario de la base de datos
 define("DB_PASSWORD","j#@&XHl5cd8^");
