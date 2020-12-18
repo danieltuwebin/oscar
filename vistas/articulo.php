@@ -69,7 +69,7 @@ if($_SESSION['almacen']==1)
                             <label>Categoría(*):</label>
                             <select id="idcategoria" name="idcategoria" class="form-control selectpicker" data-live-search="true" required></select>
                           </div>
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Stock(*):</label>
                             <input type="number-decimal" class="form-control" name="stock" placeholder="0.00" id="stock" required>
                           </div>
@@ -83,12 +83,19 @@ if($_SESSION['almacen']==1)
                                <option value="Mt.">Metro</option>
                                <option value="M2.">Metro Cuadrado</option>
                             </select>
-                          </div>
-
+                          </div>                         
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Presentación:</label>
                             <input type="text" class="form-control" name="presentacion" id="presentacion" maxlength="20" placeholder="Presentación">
                           </div>
+                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <label>Tipo Tela:</label>
+                            <select name="tipotela" id="tipotela" class="form-control selectpicker" required="">
+                               <option value=" ">------Seleccione Tipo tela------</option>
+                               <option value="1">Ancho 1.5 mts</option>
+                               <option value="2">Ancho 2.0 mts</option>
+                            </select>
+                          </div>                           
                           
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <label>Descripción:</label>
