@@ -86,7 +86,7 @@ Class Articulo
 
     public function listarArticulosProduccion_x_idconvertidos($articuloconvertido)
     {
-		$sql="SELECT ap.idarticuloproduccion,ap.idarticulo,apd.codarticulo,a.medida,a.nombre,di.precio_venta,apd.cantidad,ap.estado 
+		$sql="SELECT ap.idarticuloproduccion,ap.idarticulo,apd.codarticulo,a.medida,a.nombre,di.precio_venta,apd.cantidad,ap.estado,a.tipotela 
 		FROM articulo_produccion ap LEFT JOIN articulo_produccion_detalle apd ON ap.idarticuloproduccion = apd.idarticuloproduccion LEFT JOIN articulo a ON apd.codarticulo = a.idarticulo
 		LEFT JOIN detalle_ingreso di ON apd.codarticulo = di.idarticulo WHERE ap.idarticuloproduccion = '$articuloconvertido'";
 		return ejecutarConsulta($sql);  

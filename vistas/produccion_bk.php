@@ -86,11 +86,11 @@ if (!isset($_SESSION["nombre"])) {
 
                   <div class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-12">
                     <label>Med. ancho(*):</label>
-                    <input type="number" class="form-control" name="medida_ancho" id="medida_ancho" min="0" max="100" step="0.50" required="">
+                    <input type="number" class="form-control" name="medida_ancho" id="medida_ancho" required="">
                   </div>
                   <div class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-12">
                     <label>Med. alto(*):</label>
-                    <input type="number" class="form-control" name="medida_alto" id="medida_alto" min="0" max="100" step="0.50" required="">
+                    <input type="number" class="form-control" name="medida_alto" id="medida_alto" required="">
                   </div>
 
                   <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
@@ -104,27 +104,21 @@ if (!isset($_SESSION["nombre"])) {
                       <div class="input-group-addon">%</div>
                     </div>
                   </div>
-                  <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                    <div class="input-group has-success"><br>
-                    <button id="btnCalcular" type="button" class="btn btn-success"> <span class="fa fa-money"></span>&nbsp;Calcular</button>
-                    </div>
-                  </div>                  
 
 
-                  <!--                   <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+<!--                   <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                   <label for=imputPlaca style="color:#FFFFFF";>x</label>
                     <a data-toggle="modal" href="#myModal">
                       <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-search"></span> Agregar Artículos</button>
                     </a>
                   </div>
-                    -->
+ -->
                   <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                     <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                       <thead style="background-color:#A9D0F5">
                         <th>Id</th>
-                        <th style="display:none">TipoTela</th>
                         <th>Artículo</th>
-                        <th>Medida</th>
+                        <th>Medida</th>                        
                         <th>Cantidad</th>
                         <th>Precio Prod</th>
                         <th>Subtotal</th>
@@ -132,8 +126,7 @@ if (!isset($_SESSION["nombre"])) {
 
                       <tfoot>
                         <th></th>
-                        <th style="display:none"></th>
-                        <th></th>
+                        <th></th>                        
                         <th></th>
                         <th></th>
                         <th>TOTAL</th>

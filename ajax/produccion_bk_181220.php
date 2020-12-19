@@ -112,8 +112,7 @@ switch ($_GET["op"]) {
 		$total = 0;
 		$cont = 0;
 		echo '<thead style="background-color:#A9D0F5">
-									<th>Id</th>
-									<th style="display:none">TipoTela</th>
+                                    <th>Id</th>
 									<th>Artículo</th>
                                     <th>Medida</th>									
                                     <th>Cantidad</th>
@@ -123,7 +122,6 @@ switch ($_GET["op"]) {
 		while ($reg = $rspta->fetch_object()) {
 			echo '<tr class="filas" id="fila' . $cont . '">>
 							<td><input type="hidden" name="idarticulo[]" value="' . $reg->codarticulo . '">' . $reg->codarticulo . '</td>
-							<td style="display:none"><span name="tdtipotela" id="tdtipotela' . $cont . '">' . $reg->tipotela . '</span></td>
 							<td>' . $reg->nombre . '</td>
 							<td>' . $reg->medida . '</td>							
 							<td><input type="decimal number" name="cantidad[]" id="cantidad[]" value="' . $reg->cantidad . '"></td>
@@ -156,10 +154,4 @@ switch ($_GET["op"]) {
 			echo '<option value=' . $reg->idarticuloproduccion . '>' . $reg->nombre . '</option>';
 		}
 		break;
-
-	case 'listarArticulosInsumosTelas':
-		$rspta = $produccion->listarArticulosInsumosTelas();
-		//Codificar el resultado utilizando json
-		echo json_encode($rspta);
-		break;		
 }

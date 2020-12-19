@@ -82,14 +82,6 @@ Class Produccion
         $sql="SELECT a.nombre as articulo,a.codigo,a.medida,dp.cantidad,dp.precio_venta,(dp.cantidad*dp.precio_venta) as subtotal FROM detalle_produccion dp INNER JOIN articulo a ON dp.idarticulo=a.idarticulo WHERE dp.idproduccion='$idproduccion'";
         return ejecutarConsulta($sql);
     }
-
-
-    public function listarArticulosInsumosTelas()
-    {
-        // NO EXISTE SP
-        $sql="CALL DECO_LISTAR_ARTICULOS_INSUMOS_TELAS";
-            //return ejecutarConsultaMultipleFila($sql);
-    }
      
 }
 ?>
