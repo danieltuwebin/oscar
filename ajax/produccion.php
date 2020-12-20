@@ -12,6 +12,8 @@ $condicionp = isset($_POST["condicionp"]) ? limpiarCadena($_POST["condicionp"]) 
 $moneda = isset($_POST["moneda"]) ? limpiarCadena($_POST["moneda"]) : "";
 $nomb_produccion = isset($_POST["nomb_produccion"]) ? limpiarCadena($_POST["nomb_produccion"]) : "";
 $num_prod = isset($_POST["num_prod"]) ? limpiarCadena($_POST["num_prod"]) : "";
+$medida_ancho = isset($_POST["medida_ancho"]) ? limpiarCadena($_POST["medida_ancho"]) : "";
+$medida_alto = isset($_POST["medida_alto"]) ? limpiarCadena($_POST["medida_alto"]) : "";
 $fecha_produccion = isset($_POST["fecha_produccion"]) ? limpiarCadena($_POST["fecha_produccion"]) : "";
 $ipu_produccion = isset($_POST["ipu_produccion"]) ? limpiarCadena($_POST["ipu_produccion"]) : "";
 $total_produccion = isset($_POST["total_produccion"]) ? limpiarCadena($_POST["total_produccion"]) : "";
@@ -20,9 +22,15 @@ $total_produccion = isset($_POST["total_produccion"]) ? limpiarCadena($_POST["to
 switch ($_GET["op"]) {
 	case 'guardaryeditar':
 		if (empty($idproduccion)) {
+			/*
 			$rspta = $produccion->insertar($idproduccion, $idusuario, $condicionp, $moneda, $nomb_produccion, $num_prod, $fecha_produccion, $ipu_produccion, $total_produccion, $_POST["idarticulo"], $_POST["cantidad"], $_POST["precio_venta"]);
 			echo $rspta ? "Producción Registrada" : "No se pudo registrar todos los datos de la Producción";
+			*/
+			echo $idproduccion;
 		} else {
+			//echo $idproduccion;
+			$rspta = $produccion->insertar($idproduccion, $idusuario, $condicionp, $moneda, $nomb_produccion, $num_prod ,$medida_ancho, $medida_alto, $fecha_produccion, $ipu_produccion, $total_produccion, $_POST["idarticulo"], $_POST["cantidad"], $_POST["precio_venta"]);
+			echo $rspta; //? "Producción Registrada" : "No se pudo registrar todos los datos de la Producción";
 		}
 		break;
 

@@ -75,6 +75,7 @@ if (!isset($_SESSION["nombre"])) {
                   <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Nombre de producto(*):</label>
                     <input type="hidden" name="idproduccion" id="idproduccion">
+                    <input type="hidden" name="nomb_produccion" id="nomb_produccion" >
                     <select id="idarticuloC" name="idarticuloC" class="form-control selectpicker" data-live-search="true" maxlength="50" required="">
                     </select>
                   </div>
@@ -211,7 +212,7 @@ if (!isset($_SESSION["nombre"])) {
 
   require 'footer.php';
   ?>
-  <script type="text/javascript" src="scripts/produccion.js"></script>
+  <script type="text/javascript" src="scripts/produccion.js?1.0"></script>
 <?php
 }
 ob_end_flush();

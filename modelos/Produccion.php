@@ -11,12 +11,14 @@ Class Produccion
     }
  
     //Implementamos un método para insertar registros
-    public function insertar($idproduccion,$idusuario,$condicionp,$moneda,$nomb_produccion,$num_prod,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta)
+    public function insertar($idproduccion,$idusuario,$condicionp,$moneda,$nomb_produccion,$num_prod,$medida_ancho, $medida_alto,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta)
     {
 
         $sql="INSERT INTO produccion(idarticuloproduccion, idusuario, condicionp, moneda, nomb_produccion, num_prod, med_ancho, med_alto, fecha_produccion, ipu_produccion, total_produccion, estado)       
-        VALUES ('$idproduccion','$idusuario','$condicionp','$moneda','$nomb_produccion','$num_prod','$fecha_produccion','$ipu_produccion','$total_produccion','Aceptado')";
+        VALUES ('$idproduccion','$idusuario','$condicionp','$moneda','$nomb_produccion','$num_prod', '$medida_ancho', '$medida_alto', '$fecha_produccion','$ipu_produccion','$total_produccion','Aceptado')";
         //return ejecutarConsulta($sql);
+
+        
         $idproduccionnew=ejecutarConsulta_retornarID($sql);
  
         $num_elementos=0;
@@ -34,6 +36,8 @@ Class Produccion
         }
  
         return $sw;
+        
+        //return $sql;
     }
   
     //Implementamos un método para anular la venta
@@ -77,12 +81,10 @@ Class Produccion
         return ejecutarConsulta($sql);
     }
 
-
     public function producciondetalle($idproduccion){
         $sql="SELECT a.nombre as articulo,a.codigo,a.medida,dp.cantidad,dp.precio_venta,(dp.cantidad*dp.precio_venta) as subtotal FROM detalle_produccion dp INNER JOIN articulo a ON dp.idarticulo=a.idarticulo WHERE dp.idproduccion='$idproduccion'";
         return ejecutarConsulta($sql);
     }
-
 
     public function listarArticulosInsumosTelas()
     {

@@ -18,7 +18,7 @@ function init() {
         $('#idarticuloC').selectpicker('refresh');
     });
 
-    listarArticulosInsumosTelas();
+    //listarArticulosInsumosTelas();
 
 }
 
@@ -104,7 +104,7 @@ function listar() {
 //Función ListarArticulos
 function listarArticulosProduccion_x_idconvertidos() {
     var formData = new FormData($("#formulario")[0]);
-    console.log(formData);
+    //console.log(formData);
 
     $.ajax({
         url: "../ajax/produccion.php?op=listarArticulosProduccion_x_idconvertidos",
@@ -114,7 +114,7 @@ function listarArticulosProduccion_x_idconvertidos() {
         processData: false,
 
         success: function(datos) {
-            console.log(datos);
+            //console.log(datos);
             if (datos != "") {
                 $("#detalles").html(datos);
                 detalles = 1;
@@ -132,6 +132,7 @@ function guardaryeditar(e) {
     e.preventDefault(); //No se activará la acción predeterminada del evento
     //$("#btnGuardar").prop("disabled",true);
     var formData = new FormData($("#formulario")[0]);
+    console.log(formData);
 
     $.ajax({
         url: "../ajax/produccion.php?op=guardaryeditar",
@@ -141,6 +142,7 @@ function guardaryeditar(e) {
         processData: false,
 
         success: function(datos) {
+            console.log(datos);
             bootbox.alert(datos);
             mostrarform(false);
             listar();
@@ -302,6 +304,8 @@ function eliminarDetalle(indice) {
 $("#idarticuloC").change(function() {
     $("#idproduccion").val(this.value);
     //alert(this.value);
+    $("#nomb_produccion").val($('select[name="idarticuloC"] option:selected').text());
+    console.log('--- ' + $('select[name="idarticuloC"] option:selected').text());
     listarArticulosProduccion_x_idconvertidos();
 });
 
