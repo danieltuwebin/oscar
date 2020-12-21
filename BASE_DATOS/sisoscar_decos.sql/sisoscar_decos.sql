@@ -836,3 +836,14 @@ DELIMITER ;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2020-12-18 11:04:59
+
+---------------- ADD DANIEL 201220
+DROP PROCEDURE IF EXISTS USP_DECO_ACTUALIZAR_STOCK_ARTICULO_PRODUCIDO;
+DELIMITER $$
+CREATE PROCEDURE USP_DECO_ACTUALIZAR_STOCK_ARTICULO_PRODUCIDO(IN pint_nombreArticuloProd VARCHAR(150),
+                                                              IN pflo_Stock FLOAT)
+BEGIN
+SET @idarticulo = (SELECT idarticulo FROM articulo WHERE nombre LIKE pint_nombreArticuloProd);
+UPDATE articulo SET stock = pflo_Stock WHERE idarticulo = @idarticulo;
+END$$
+DELIMITER ;
