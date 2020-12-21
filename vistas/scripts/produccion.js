@@ -25,6 +25,8 @@ function init() {
 //Función limpiar
 function limpiar() {
     $("#idproduccion").val("");
+    $("#nomb_produccion").val("");
+    $("#cant_produccion").val("");
     $("#condicionp").val("");
     $("#moneda").val("");
     $("#nomb_produccion").val("");
@@ -252,7 +254,9 @@ function modificarSubototales_ConCalculodeTela() {
             var medidaancho = $("#medida_ancho").val();
             var medidaalto = $("#medida_alto").val();
             var tipotel = ttela[i].innerText;
-            document.getElementsByName("cantidad[]")[i].value = CalcularInsumoTela(medidaancho, medidaalto, tipotel);
+            var cantidad = CalcularInsumoTela(medidaancho, medidaalto, tipotel);
+            document.getElementsByName("cantidad[]")[i].value = cantidad; //CalcularInsumoTela(medidaancho, medidaalto, tipotel);
+            $("#cant_produccion").val(cantidad);
         }
 
         inpS.value = inpC.value * inpP.value;

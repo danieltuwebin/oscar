@@ -90,7 +90,7 @@ if($_SESSION['almacen']==1)
                           </div>
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Tipo Tela:</label>
-                            <select name="tipotela" id="tipotela" class="form-control selectpicker" required="">
+                            <select name="tipotela" id="tipotela" class="form-control selectpicker">
                                <option value=" ">------Seleccione Tipo tela------</option>
                                <option value="1">Ancho 1.5 mts</option>
                                <option value="2">Ancho 2.0 mts</option>

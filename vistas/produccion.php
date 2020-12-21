@@ -76,6 +76,7 @@ if (!isset($_SESSION["nombre"])) {
                     <label>Nombre de producto(*):</label>
                     <input type="hidden" name="idproduccion" id="idproduccion">
                     <input type="hidden" name="nomb_produccion" id="nomb_produccion" >
+                    <input type="hidden" name="cant_produccion" id="cant_produccion" >
                     <select id="idarticuloC" name="idarticuloC" class="form-control selectpicker" data-live-search="true" maxlength="50" required="">
                     </select>
                   </div>

@@ -11,14 +11,12 @@ Class Produccion
     }
  
     //Implementamos un método para insertar registros
-    public function insertar($idproduccion,$idusuario,$condicionp,$moneda,$nomb_produccion,$num_prod,$medida_ancho, $medida_alto,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta)
+    public function insertar($idproduccion,$idusuario,$condicionp,$moneda,$nomb_produccion,$cant_produccion,$num_prod,$medida_ancho, $medida_alto,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta)
     {
-
+        
         $sql="INSERT INTO produccion(idarticuloproduccion, idusuario, condicionp, moneda, nomb_produccion, num_prod, med_ancho, med_alto, fecha_produccion, ipu_produccion, total_produccion, estado)       
         VALUES ('$idproduccion','$idusuario','$condicionp','$moneda','$nomb_produccion','$num_prod', '$medida_ancho', '$medida_alto', '$fecha_produccion','$ipu_produccion','$total_produccion','Aceptado')";
-        //return ejecutarConsulta($sql);
-
-        
+        //return ejecutarConsulta($sql);        
         $idproduccionnew=ejecutarConsulta_retornarID($sql);
  
         $num_elementos=0;
@@ -30,14 +28,17 @@ Class Produccion
             ejecutarConsulta($sql_detalle) or $sw = false;
             if(substr($condicionp,0,3) == "Pro"){
 				$sql_stock = "UPDATE articulo SET stock = (stock - $cantidad[$num_elementos]) WHERE idarticulo = $idarticulo[$num_elementos]";
-				ejecutarConsulta($sql_stock) or $sw = false;				
+                ejecutarConsulta($sql_stock) or $sw = false;
 			}			
 			$num_elementos=$num_elementos + 1;
         }
- 
-        return $sw;
         
-        //return $sql;
+        //ACTUALIZAR STOCK DE ARTICULO PRODUCIDO
+        $sql_stock_articulo_producido = "CALL USP_DECO_ACTUALIZAR_STOCK_ARTICULO_PRODUCIDO('$nomb_produccion','$cant_produccion')";
+        ejecutarConsulta($sql_stock_articulo_producido) or $sw = false;
+
+        return $sw;        
+        //return $sql_stock_articulo_producido;
     }
   
     //Implementamos un método para anular la venta
