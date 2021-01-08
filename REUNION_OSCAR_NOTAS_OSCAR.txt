@@ -1,0 +1,12 @@
+para saber total de tela a usar en ventana (tenemos 2 condicones)
+1 si la tela es de 1.5 mts de ancho
+ en una ventan de 1.5 de ancho por 2 de alto
+ancho 1.5 mt/50 cm=( 3 numero de paños)
+alto 2 + 50 cm= 2.50
+ total de alto por numero de paños(para saber total de tela a usar)   
+ 2.50 * 3 = 7.50 
+2 si la tela es de 2 mt de ancho
+ ancho 1,50/0,50 = 3
+
+ alto 2* paños 3 = 5  
+
