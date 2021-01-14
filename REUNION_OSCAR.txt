@@ -42,6 +42,45 @@ PRESUPUESTO
 
 
 
+***** REUNION 130121
+CAMBIOS SOLICITADOS
+
+
+1. AGREGAR UNA COLUMNA EN EL MODULO PRODUCCION PARA EL NOMBRE DEL CLIENTE, NO ES OBLIGATORIO --> 16-01
+2. AGREGAR CAMPO SELECT PARA SELECC CLIENTE --> 20-01
+3. PERMITIR ADICIONAR UN INSUMO DESDE ARTICULO PARA EL PRODUCTO ( PRODUCIDO ) -- ANALIZAR DETALLE +++
+4. TIPO DE TELA --> 27-01
+-> 2.8  = ANCHO X 3 = CANTIDAD
+-> 3.0  = ANCHO X 3 = CANTIDAD
+-> Ancho mts = ANCHO X ALTO = CANTIDAD
+-> 
+
+--> Saldo : 1000
+--> Facturacion E implementacion : 2000
+---------------------------------------
+--> Saldo Pendiente : 2000			|||
+---------------------------------------
+
+--> PENDIENTE OSCAR - 
+.PDF EN EL MODULO DE PRODUCCIÓN - 16-01 >> 25-01
+
+
+
+
+
+----> DEUSMECAD --> 
+16
+
+
+
+
+
+
+
+
+
+
+
 
 
 
