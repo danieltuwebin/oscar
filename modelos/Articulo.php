@@ -98,7 +98,13 @@ Class Articulo
         $sql="SELECT a.idarticulo,a.idcategoria,c.nombre as categoria,a.codigo,a.nombre,a.stock,a.medida,a.presentacion,a.descripcion,a.imagen,a.condicion FROM articulo a INNER JOIN categoria c ON a.idcategoria=c.idcategoria WHERE a.condicion='1'";
 		return ejecutarConsulta($sql);      
 	}
-	
+
+	//Implementamos un metodo para listar a los clientes
+	public function listar_clientes(){
+		$sql="SELECT idpersona, tipo_persona, nombre, tipo_documento, num_documento, contacto, direccion, telefono, email FROM persona
+		WHERE tipo_persona LIKE 'Cliente'";
+		return ejecutarConsulta($sql);
+	}
 }
 
 ?>

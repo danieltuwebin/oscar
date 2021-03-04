@@ -18,6 +18,13 @@ function init() {
         $('#idarticuloC').selectpicker('refresh');
     });
 
+    //Cargamos los items al select cliente
+    $.post("../ajax/produccion.php?op=selectCliente", function(r) {
+        $("#idclienteC").html(r);
+        console.log(r);
+        $('#idclienteC').selectpicker('refresh');
+    });
+
     //listarArticulosInsumosTelas();
 
 }
@@ -166,6 +173,9 @@ function mostrar(idproduccion) {
         $("#fecha_produccion").val(data.fecha);
         $("#ipu_produccion").val(data.ipu_produccion);
         $("#total_produccion").val(data.total_produccion);
+        //$("#idarticuloC").val('8').trigger('change.select2');
+        $("#idarticuloC").val(data.idarticuloproduccion).trigger('change');
+        $("#idclienteC").val(data.idcliente).trigger('change');
 
         //Ocultar y mostrar los botones
         $("#btnGuardar").hide();
@@ -313,6 +323,14 @@ $("#idarticuloC").change(function() {
     listarArticulosProduccion_x_idconvertidos();
 });
 
+$("#idclienteC").change(function() {
+    $("#idcliente").val(this.value);
+    //alert(this.value);
+    $("#nomb_cliente").val($('select[name="idclienteC"] option:selected').text());
+    console.log('--- ' + $('select[name="idclienteC"] option:selected').text());
+    //listarArticulosProduccion_x_idconvertidos();
+});
+
 
 $("#btnCalcular").click(function() {
 
@@ -346,7 +364,8 @@ $("#btnCalcular").click(function() {
 
 // Calculo de Tela necesaria
 function CalcularInsumoTela(ancho, alto, tipotela) {
-    // tipo 1 --> 1.5 --- tipo 2 --> mayor a 1.5  
+    // tipo 1 --> 1.5 --- tipo 2 --> mayor a 1.5
+    // tipo 3 --> 2.8 --- tipo 2 --> 3.0  
     var MedAnchoEntero = 0
     var MedDiferencia = 0
     var MedFinal = 0
@@ -367,6 +386,10 @@ function CalcularInsumoTela(ancho, alto, tipotela) {
         Cantidadpanios = ((MedFinal / 0.5) * (parseFloat(alto) + 0.5));
     } else if (tipotela == 2) {
         Cantidadpanios = ((MedFinal / 0.5) * parseFloat(alto));
+    } else if (tipotela == 3) {
+        Cantidadpanios = (MedFinal * 3);
+    } else if (tipotela == 4) {
+        Cantidadpanios = (MedFinal * 3);
     }
     //Devuelve valor
     return Cantidadpanios;

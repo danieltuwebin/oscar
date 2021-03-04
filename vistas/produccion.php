@@ -30,6 +30,7 @@ if (!isset($_SESSION["nombre"])) {
                   <thead>
                     <th width="120">Opciones</th>
                     <th>Condicion</th>
+                    <th>Cliente</th>
                     <th>Fecha de producción</th>
                     <th>Nombre de producto</th>
                     <th>Medidas</th>
@@ -50,6 +51,15 @@ if (!isset($_SESSION["nombre"])) {
 
               <div class="panel-body table-responsive" id="formularioregistros">
                 <form name="formulario" id="formulario" method="POST">
+                  <div class="">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <label>Cliente(*):</label>
+                      <input type="hidden" name="idcliente" id="idcliente">
+                      <input type="hidden" name="nomb_cliente" id="nomb_cliente">
+                      <select id="idclienteC" name="idclienteC" class="form-control selectpicker" data-live-search="true" maxlength="50" required="">
+                      </select>
+                    </div>
+                  </div>
 
                   <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                     <label>Condición(*):</label>
@@ -75,12 +85,22 @@ if (!isset($_SESSION["nombre"])) {
                   <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Nombre de producto(*):</label>
                     <input type="hidden" name="idproduccion" id="idproduccion">
-                    <input type="hidden" name="nomb_produccion" id="nomb_produccion" >
-                    <input type="hidden" name="cant_produccion" id="cant_produccion" >
+                    <input type="hidden" name="nomb_produccion" id="nomb_produccion">
+                    <input type="hidden" name="cant_produccion" id="cant_produccion">
                     <select id="idarticuloC" name="idarticuloC" class="form-control selectpicker" data-live-search="true" maxlength="50" required="">
                     </select>
                   </div>
-
+                  <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <label>Nº de prod.</label>
+                    <input type="text" class="form-control" name="num_prod" id="num_prod" maxlength="10" placeholder="0000000" style="text-align:center;" required="">
+                  </div>
+                  <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <label for=imputPlaca>Impuesto:</label>
+                    <div class="input-group has-success">
+                      <input type="text" class="form-control" maxlength="10" placeholder="18" name="ipu_produccion" id="ipu_produccion" style="text-align:center;" required="">
+                      <div class="input-group-addon">%</div>
+                    </div>
+                  </div>
                   <div class="form-group col-lg-2 col-md-2 col-sm-3 col-xs-12">
                     <label>Fecha de producción(*):</label>
                     <input type="date" class="form-control" name="fecha_produccion" id="fecha_produccion" required="">
@@ -95,22 +115,12 @@ if (!isset($_SESSION["nombre"])) {
                     <input type="number" class="form-control" name="medida_alto" id="medida_alto" min="0" max="100" step="0.50" required="">
                   </div>
 
-                  <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                    <label>Nº de prod.</label>
-                    <input type="text" class="form-control" name="num_prod" id="num_prod" maxlength="10" placeholder="0000000" style="text-align:center;" required="">
-                  </div>
-                  <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                    <label for=imputPlaca>Impuesto:</label>
-                    <div class="input-group has-success">
-                      <input type="text" class="form-control" maxlength="10" placeholder="18" name="ipu_produccion" id="ipu_produccion" style="text-align:center;" required="">
-                      <div class="input-group-addon">%</div>
-                    </div>
-                  </div>
+
                   <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                     <div class="input-group has-success"><br>
-                    <button id="btnCalcular" type="button" class="btn btn-success"> <span class="fa fa-money"></span>&nbsp;Calcular</button>
+                      <button id="btnCalcular" type="button" class="btn btn-success"> <span class="fa fa-money"></span>&nbsp;Calcular</button>
                     </div>
-                  </div>                  
+                  </div>
 
 
                   <!--                   <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">

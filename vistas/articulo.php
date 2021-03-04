@@ -94,6 +94,8 @@ if($_SESSION['almacen']==1)
                                <option value=" ">------Seleccione Tipo tela------</option>
                                <option value="1">Ancho 1.5 mts</option>
                                <option value="2">Ancho 2.0 mts</option>
+                               <option value="3">Ancho 2.8 mts</option>
+                               <option value="4">Ancho 3.0 mts</option>
                             </select>
                           </div>                           
                           

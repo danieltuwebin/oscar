@@ -1,0 +1,33 @@
+Panel de Control: http://cpanel.decoshadesperu.com
+Usuario: decoshad
+Contraseña: A5m42bJai8
+
+http://decoshadesperu.com/sistema_test/vistas/login.html
+
+
+/************/
+
+notas de los datos
+
+-- Modulo de conversion de productos
+Cuando se registra la conversion de producto se graba un registro en al TBL ( articulo_produccion )
+y los detalles de los productos que lo componen en la TBL ( articulo_produccion_detalle )
+
+
+
+
+****************************************************
+
+http://186.64.116.55/cpanel
+
+http://186.64.116.55/~sisoscar/vistas/login.html
+
+****************************************************
+
+sisoscar
+Q+T-(GAQ1v7}
+
+
+-- VERSION PHP 5.4 VERSION 
+
+

@@ -18,6 +18,8 @@ $medida_alto = isset($_POST["medida_alto"]) ? limpiarCadena($_POST["medida_alto"
 $fecha_produccion = isset($_POST["fecha_produccion"]) ? limpiarCadena($_POST["fecha_produccion"]) : "";
 $ipu_produccion = isset($_POST["ipu_produccion"]) ? limpiarCadena($_POST["ipu_produccion"]) : "";
 $total_produccion = isset($_POST["total_produccion"]) ? limpiarCadena($_POST["total_produccion"]) : "";
+$idcliente = isset($_POST["idcliente"]) ? limpiarCadena($_POST["idcliente"]) : "";
+$nomb_cliente = isset($_POST["nomb_cliente"]) ? limpiarCadena($_POST["nomb_cliente"]) : "";
 
 
 switch ($_GET["op"]) {
@@ -30,8 +32,8 @@ switch ($_GET["op"]) {
 			echo $idproduccion;
 		} else {
 			//echo $idproduccion;
-			$rspta = $produccion->insertar($idproduccion, $idusuario, $condicionp, $moneda, $nomb_produccion, $cant_produccion, $num_prod ,$medida_ancho, $medida_alto, $fecha_produccion, $ipu_produccion, $total_produccion, $_POST["idarticulo"], $_POST["cantidad"], $_POST["precio_venta"]);
-			echo $rspta; //? "Producción Registrada" : "No se pudo registrar todos los datos de la Producción";
+			$rspta = $produccion->insertar($idproduccion, $idusuario, $condicionp, $moneda, $nomb_produccion, $cant_produccion, $num_prod ,$medida_ancho, $medida_alto, $fecha_produccion, $ipu_produccion, $total_produccion, $_POST["idarticulo"], $_POST["cantidad"], $_POST["precio_venta"], $idcliente);
+			echo $rspta ? "Producción Registrada" : "No se pudo registrar todos los datos de la Producción";
 		}
 		break;
 
@@ -91,15 +93,16 @@ switch ($_GET["op"]) {
 			$data[] = array(
 				"0" => ($reg->estado == 'Aceptado') ? '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>' . '<button class="btn btn-danger" onclick="anular(' . $reg->idproduccion . ')"><i class="fa fa-close"></i></button>' : '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>',
 				"1" => $reg->condicionp,
-				"2" => $reg->fecha,
-				"3" => $reg->nomb_produccion,
-				"4" => $reg->medida,
-				"5" => $reg->usuario,
-				"6" => $reg->num_prod,
-				"7" => $reg->ipu_produccion,
-				"8" => $reg->total_produccion,
-				"9" => $reg->moneda,
-				"10" => ($reg->estado == 'Aceptado') ? '<span class="label bg-green">Aceptado</span>' :
+				"2" => $reg->nombre,
+				"3" => $reg->fecha,
+				"4" => $reg->nomb_produccion,
+				"5" => $reg->medida,
+				"6" => $reg->usuario,
+				"7" => $reg->num_prod,
+				"8" => $reg->ipu_produccion,
+				"9" => $reg->total_produccion,
+				"10" => $reg->moneda,
+				"11" => ($reg->estado == 'Aceptado') ? '<span class="label bg-green">Aceptado</span>' :
 					'<span class="label bg-red">Anulado</span>'
 			);
 		}
@@ -170,5 +173,16 @@ switch ($_GET["op"]) {
 		$rspta = $produccion->listarArticulosInsumosTelas();
 		//Codificar el resultado utilizando json
 		echo json_encode($rspta);
-		break;		
+		break;
+	case 'selectCliente':
+		require_once "../modelos/Articulo.php";
+		$articulo = new Articulo();
+
+		$rspta = $articulo->listar_clientes();
+
+		while ($reg = $rspta->fetch_object()) {
+			echo '<option value=' . $reg->idpersona . '>' . $reg->nombre . '</option>';
+		}
+		break;
+	
 }

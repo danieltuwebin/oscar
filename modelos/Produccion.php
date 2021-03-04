@@ -11,11 +11,11 @@ Class Produccion
     }
  
     //Implementamos un método para insertar registros
-    public function insertar($idproduccion,$idusuario,$condicionp,$moneda,$nomb_produccion,$cant_produccion,$num_prod,$medida_ancho, $medida_alto,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta)
+    public function insertar($idproduccion,$idusuario,$condicionp,$moneda,$nomb_produccion,$cant_produccion,$num_prod,$medida_ancho, $medida_alto,$fecha_produccion,$ipu_produccion,$total_produccion,$idarticulo,$cantidad,$precio_venta,$idcliente)
     {
         
-        $sql="INSERT INTO produccion(idarticuloproduccion, idusuario, condicionp, moneda, nomb_produccion, num_prod, med_ancho, med_alto, fecha_produccion, ipu_produccion, total_produccion, estado)       
-        VALUES ('$idproduccion','$idusuario','$condicionp','$moneda','$nomb_produccion','$num_prod', '$medida_ancho', '$medida_alto', '$fecha_produccion','$ipu_produccion','$total_produccion','Aceptado')";
+        $sql="INSERT INTO produccion(idarticuloproduccion, idusuario, condicionp, moneda, nomb_produccion, num_prod, med_ancho, med_alto, fecha_produccion, ipu_produccion, total_produccion, estado, idcliente)       
+        VALUES ('$idproduccion','$idusuario','$condicionp','$moneda','$nomb_produccion','$num_prod', '$medida_ancho', '$medida_alto', '$fecha_produccion','$ipu_produccion','$total_produccion','Aceptado','$idcliente')";
         //return ejecutarConsulta($sql);        
         $idproduccionnew=ejecutarConsulta_retornarID($sql);
  
@@ -58,7 +58,8 @@ Class Produccion
     //Implementar un método para mostrar los datos de un registro a modificar
     public function mostrar($idproduccion)
     {
-        $sql="SELECT p.idproduccion,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion, u.idusuario, u.nombre as usuario, p.num_prod, p.ipu_produccion, p.total_produccion, p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario WHERE p.idproduccion='$idproduccion'";
+        $sql="SELECT p.idproduccion,p.idarticuloproduccion,p.idcliente,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion, u.idusuario, u.nombre as usuario, p.num_prod, p.ipu_produccion, p.total_produccion, p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario WHERE p.idproduccion='$idproduccion'";
+        //$sql="SELECT p.idproduccion,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion, u.idusuario, u.nombre as usuario, p.num_prod, p.ipu_produccion, p.total_produccion, p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario WHERE p.idproduccion='$idproduccion'";
         return ejecutarConsultaSimpleFila($sql);
     }
 
@@ -72,9 +73,12 @@ Class Produccion
     public function listar()
     {
        //$sql="SELECT p.idproduccion,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion,u.idusuario,u.nombre as usuario,p.num_prod,p.ipu_produccion,p.total_produccion,p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario  ORDER by p.idproduccion desc";
-       $sql="SELECT p.idproduccion,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion,CONCAT(p.med_ancho,' x ',p.med_alto) AS medida,u.idusuario,u.nombre as usuario,p.num_prod,p.ipu_produccion,p.total_produccion,p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario  ORDER by p.idproduccion desc";       
+       //$sql="SELECT p.idproduccion,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion,CONCAT(p.med_ancho,' x ',p.med_alto) AS medida,u.idusuario,u.nombre as usuario,p.num_prod,p.ipu_produccion,p.total_produccion,p.estado FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario  ORDER by p.idproduccion desc";       
+       $sql="SELECT p.idproduccion,case when pe.nombre is null then '' else pe.nombre end as nombre,DATE(p.fecha_produccion) as fecha,p.condicionp,p.moneda,p.nomb_produccion,CONCAT(p.med_ancho,' x ',p.med_alto) AS medida,u.idusuario,u.nombre as usuario,p.num_prod,p.ipu_produccion,p.total_produccion,p.estado 
+             FROM produccion p INNER JOIN usuario u ON p.idusuario=u.idusuario 
+             LEFT JOIN persona pe ON p.idcliente = pe.idpersona
+             ORDER by p.idproduccion desc";
            return ejecutarConsulta($sql);
-
     } 
 
     public function producioncabecera($idproduccion){
