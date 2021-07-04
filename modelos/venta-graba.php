@@ -89,7 +89,7 @@ $subtot=round($subtot, 2);
 $tipodoc='';
 $moneda='';
 $ndoc='';
-if($mostrar['total_venta']=='Factura'){ $tipodoc='01'; }else{ $tipodoc='03'; }
+if($mostrar['total_venta']=='Factura Electrónica'){ $tipodoc='01'; }else{ $tipodoc='03'; }
 if($mostrar['moneda']=='Dolar'){ $moneda='USD'; }else{ $moneda='PEN'; }
 if($mcliente['tipo_documento']=='RUC'){ $ndoc='6'; }else if($mcliente['tipo_documento']=='DNI'){ $ndoc='1'; }
 
