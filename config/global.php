@@ -20,6 +20,8 @@ define("DB_ENCODE","utf8");
 define("PRO_NOMBRE","decos");
 
 //RUTA DEL SISTEMA EL LOCALHOST O WEB -- SIN (/) SLASH AL FINAL
-define("RUTA","http://decoshadesperu.com/SIGA"); 
+//define("RUTA","http://decoshadesperu.com/SIGA"); 
+define("RUTA","http://186.64.116.55/~sisoscar"); 
+//http://186.64.116.55/~sisoscar/vistas/escritorio.php
 
 ?>

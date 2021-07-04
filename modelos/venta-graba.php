@@ -164,8 +164,6 @@ $jsondata['mensaje'] = 'El documento fue enviado a la sunat';
 	
 }
 
-
-
 $new->creaPDF($mostrar['idventa'], RUTA);
 
 //creaPDF('F001', '00010', 'venta-graba.php');

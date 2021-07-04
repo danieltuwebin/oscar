@@ -659,6 +659,7 @@ function cpeFactura($ruta, $cabecera, $detalle)
 
         $doc->loadXML($xmlCPE);
         $doc->save(dirname(__FILE__) . '/' . $ruta . '.XML');
+        //$doc->save('http://186.64.116.55/~sisoscar/api_cpe/BETA/10415898890/10415898890-03-B002-00000010.XML');
     } catch (Exception $e) {
         //$nombre_archivo = "logs.txt";
         //echo 'Excepción capturada: ', $e->getMessage(), "\n";
@@ -766,7 +767,7 @@ function cpeNC($ruta, $cabecera, $detalle)
 
     for ($i = 0; $i < count($detalle); $i++) {
 
-            $xmlCPE = $xmlCPE . '<cac:CreditNoteLine>
+        $xmlCPE = $xmlCPE . '<cac:CreditNoteLine>
             <cbc:ID>' . $detalle[$i]["txtITEM"] . '</cbc:ID>
         <cbc:CreditedQuantity unitCode="' . $detalle[$i]["txtUNIDAD_MEDIDA_DET"] . '">' . $detalle[$i]["txtCANTIDAD_DET"] . '</cbc:CreditedQuantity>
         <cbc:LineExtensionAmount currencyID="' . $cabecera["COD_MONEDA"] . '">' . $detalle[$i]["txtIMPORTE_DET"] . '</cbc:LineExtensionAmount>
@@ -905,7 +906,7 @@ function cpeND($ruta, $cabecera, $detalle)
     </cac:RequestedMonetaryTotal>';
 
     for ($i = 0; $i < count($detalle); $i++) {
-            $xmlCPE = $xmlCPE . '
+        $xmlCPE = $xmlCPE . '
         <cac:DebitNoteLine>
             <cbc:ID>' . $detalle[$i]["txtITEM"] . '</cbc:ID>
         <cbc:DebitedQuantity unitCode="' . $detalle[$i]["txtUNIDAD_MEDIDA_DET"] . '">' . $detalle[$i]["txtCANTIDAD_DET"] . '</cbc:DebitedQuantity>
@@ -996,21 +997,21 @@ function cpeBajaSunat($ruta, $cabecera, $detalle)
     </cac:Party>
     </cac:AccountingSupplierParty>';
 
-        for ($i = 0; $i < count($detalle); $i++) {
-            $xmlCPE = $xmlCPE . '<sac:VoidedDocumentsLine>
+    for ($i = 0; $i < count($detalle); $i++) {
+        $xmlCPE = $xmlCPE . '<sac:VoidedDocumentsLine>
     <cbc:LineID>' . $detalle[$i]["ITEM"] . '</cbc:LineID>
     <cbc:DocumentTypeCode>' . $detalle[$i]["TIPO_COMPROBANTE"] . '</cbc:DocumentTypeCode>
     <sac:DocumentSerialID>' . $detalle[$i]["SERIE"] . '</sac:DocumentSerialID>
     <sac:DocumentNumberID>' . $detalle[$i]["NUMERO"] . '</sac:DocumentNumberID>
     <sac:VoidReasonDescription><![CDATA[' . ValidarCaracteresInv($detalle[$i]["DESCRIPCION"]) . ']]></sac:VoidReasonDescription>
     </sac:VoidedDocumentsLine>';
-        }
-        $xmlCPE = $xmlCPE . '</VoidedDocuments>';
+    }
+    $xmlCPE = $xmlCPE . '</VoidedDocuments>';
 
-        $doc->loadXML($xmlCPE);
-        $doc->save(dirname(__FILE__) . '/' . $ruta . '.XML');
+    $doc->loadXML($xmlCPE);
+    $doc->save(dirname(__FILE__) . '/' . $ruta . '.XML');
 
-        return 'XML BAJA CREADO';
+    return 'XML BAJA CREADO';
 }
 
 function cpeResumenBoleta($ruta, $cabecera, $detalle)
@@ -1214,11 +1215,11 @@ function cpeResumenBoleta($ruta, $cabecera, $detalle)
 
 function cpeGuia($ruta, $cabecera, $detalle)
 {
-        $doc = new DOMDocument();
-        $doc->formatOutput = FALSE;
-        $doc->preserveWhiteSpace = TRUE;
-        $doc->encoding = 'ISO-8859-1';
-        $xmlCPE = '<?xml version="1.0" encoding="iso-8859-1"?>
+    $doc = new DOMDocument();
+    $doc->formatOutput = FALSE;
+    $doc->preserveWhiteSpace = TRUE;
+    $doc->encoding = 'ISO-8859-1';
+    $xmlCPE = '<?xml version="1.0" encoding="iso-8859-1"?>
     <DespatchAdvice xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns="urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2">
         <ext:UBLExtensions>
             <ext:UBLExtension>
@@ -1290,23 +1291,23 @@ function cpeGuia($ruta, $cabecera, $detalle)
                 </cac:DeliveryAddress>
             </cac:Delivery>';
 
-        if ($cabecera["PLACA_CARRETA"] <> "") {
-            $xmlCPE = $xmlCPE . '<cac:TransportHandlingUnit>
+    if ($cabecera["PLACA_CARRETA"] <> "") {
+        $xmlCPE = $xmlCPE . '<cac:TransportHandlingUnit>
                                     <cbc:ID>' . $cabecera["PLACA_VEHICULO"] . '</cbc:ID>
                                     <cac:TransportEquipment>
                                         <cbc:ID>' . $cabecera["PLACA_CARRETA"] . '</cbc:ID>
                                     </cac:TransportEquipment>
                                 </cac:TransportHandlingUnit>';
-        }
+    }
 
-        $xmlCPE = $xmlCPE . '<cac:OriginAddress>
+    $xmlCPE = $xmlCPE . '<cac:OriginAddress>
                 <cbc:ID>' . $cabecera["UBIGEO_PARTIDA"] . '</cbc:ID>
                 <cbc:StreetName>' . $cabecera["DIR_PARTIDA"] . '</cbc:StreetName>
     </cac:OriginAddress>
         </cac:Shipment>';
 
-        for ($i = 0; $i < count($detalle); $i++) {
-            $xmlCPE = $xmlCPE . '<cac:DespatchLine>
+    for ($i = 0; $i < count($detalle); $i++) {
+        $xmlCPE = $xmlCPE . '<cac:DespatchLine>
             <cbc:ID>' . $detalle[$i]["ITEM"] . '</cbc:ID>
     <cbc:DeliveredQuantity unitCode="NIU">' . $detalle[$i]["PESO"] . '</cbc:DeliveredQuantity>
     <cac:OrderLineReference>
@@ -1320,11 +1321,11 @@ function cpeGuia($ruta, $cabecera, $detalle)
                 </cac:SellersItemIdentification>
             </cac:Item>
         </cac:DespatchLine>';
-        }
-        $xmlCPE = $xmlCPE . '</DespatchAdvice>';
+    }
+    $xmlCPE = $xmlCPE . '</DespatchAdvice>';
 
-        $doc->loadXML($xmlCPE);
-        $doc->save(dirname(__FILE__) . '/' . $ruta . '.XML');
+    $doc->loadXML($xmlCPE);
+    $doc->save(dirname(__FILE__) . '/' . $ruta . '.XML');
 
-        return 'XML GUIA CREADO';
+    return 'XML GUIA CREADO';
 }

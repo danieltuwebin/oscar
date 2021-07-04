@@ -89,8 +89,8 @@ function cpeEnvio($ruc, $usuario_sol, $pass_sol, $ruta_archivo, $ruta_archivo_cd
             }
 
             //eliminamos los archivos Zipeados
-            unlink($ruta_archivo . '.ZIP');
-            unlink($ruta_archivo_cdr . 'R-' . $archivo . '.ZIP');
+            //unlink($ruta_archivo . '.ZIP');
+            //unlink($ruta_archivo_cdr . 'R-' . $archivo . '.ZIP');
 
             //=============hash CDR=================
             $doc_cdr = new DOMDocument();
@@ -309,22 +309,22 @@ function cpeEnvioResumenBoleta($ruc, $usuario_sol, $pass_sol, $ruta_archivo, $ru
 }
 
 function consultaEnvioTicket($ruc, $usuario_sol, $pass_sol, $ticket, $archivo, $ruta_archivo_cdr, $ruta_ws){
-$ruta_ws; 
-$xml_post_string = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.sunat.gob.pe" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
-<soapenv:Header>
-<wsse:Security>
-<wsse:UsernameToken>
-<wsse:Username>' . $ruc . $usuario_sol . '</wsse:Username>
-<wsse:Password>' . $pass_sol . '</wsse:Password>
-</wsse:UsernameToken>
-</wsse:Security>
-</soapenv:Header>
-<soapenv:Body>
-<ser:getStatus>
-<ticket>' . $ticket . '</ticket>
-</ser:getStatus>
-</soapenv:Body>
-</soapenv:Envelope>';
+    $ruta_ws; 
+    $xml_post_string = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.sunat.gob.pe" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+    <soapenv:Header>
+    <wsse:Security>
+    <wsse:UsernameToken>
+    <wsse:Username>' . $ruc . $usuario_sol . '</wsse:Username>
+    <wsse:Password>' . $pass_sol . '</wsse:Password>
+    </wsse:UsernameToken>
+    </wsse:Security>
+    </soapenv:Header>
+    <soapenv:Body>
+    <ser:getStatus>
+    <ticket>' . $ticket . '</ticket>
+    </ser:getStatus>
+    </soapenv:Body>
+    </soapenv:Envelope>';
 
     $headers = array(
         "Content-type: text/xml;charset=\"utf-8\"",
@@ -335,7 +335,7 @@ $xml_post_string = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/
         "Content-length: " . strlen($xml_post_string),
     ); //SOAPAction: your op URL
 
-  $ruta_ws;
+    $ruta_ws;
 
     // PHP cURL  for https connection with auth
     $ch = curl_init();
@@ -404,4 +404,3 @@ $xml_post_string = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/
 
 //envio guia
 //cpeEnvio('20100066603', 'MODDATOS', 'moddatos', 'BETA/20100066603/20100066603-09-T001-00003', 'BETA/20100066603/', '20100066603-09-T001-00003', 'https://e-beta.sunat.gob.pe/ol-ti-itemision-guia-gem-beta/billService');
-?>
