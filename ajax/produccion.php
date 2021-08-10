@@ -11,15 +11,15 @@ $idusuario = $_SESSION["idusuario"];
 $condicionp = isset($_POST["condicionp"]) ? limpiarCadena($_POST["condicionp"]) : "";
 $moneda = isset($_POST["moneda"]) ? limpiarCadena($_POST["moneda"]) : "";
 $nomb_produccion = isset($_POST["nomb_produccion"]) ? limpiarCadena($_POST["nomb_produccion"]) : "";
-$cant_produccion = isset($_POST["cant_produccion"]) ? limpiarCadena($_POST["cant_produccion"]) : "";
+$cant_produccion = isset($_POST["cant_produccion"]) ? limpiarCadena($_POST["cant_produccion"]) : "";// NO ESTA EN LOCAL OSCAR
 $num_prod = isset($_POST["num_prod"]) ? limpiarCadena($_POST["num_prod"]) : "";
-$medida_ancho = isset($_POST["medida_ancho"]) ? limpiarCadena($_POST["medida_ancho"]) : "";
-$medida_alto = isset($_POST["medida_alto"]) ? limpiarCadena($_POST["medida_alto"]) : "";
+$medida_ancho = isset($_POST["medida_ancho"]) ? limpiarCadena($_POST["medida_ancho"]) : "";// NO ESTA EN LOCAL OSCAR
+$medida_alto = isset($_POST["medida_alto"]) ? limpiarCadena($_POST["medida_alto"]) : "";// NO ESTA EN LOCAL OSCAR
 $fecha_produccion = isset($_POST["fecha_produccion"]) ? limpiarCadena($_POST["fecha_produccion"]) : "";
 $ipu_produccion = isset($_POST["ipu_produccion"]) ? limpiarCadena($_POST["ipu_produccion"]) : "";
 $total_produccion = isset($_POST["total_produccion"]) ? limpiarCadena($_POST["total_produccion"]) : "";
-$idcliente = isset($_POST["idcliente"]) ? limpiarCadena($_POST["idcliente"]) : "";
-$nomb_cliente = isset($_POST["nomb_cliente"]) ? limpiarCadena($_POST["nomb_cliente"]) : "";
+$idcliente = isset($_POST["idcliente"]) ? limpiarCadena($_POST["idcliente"]) : "";// NO ESTA EN LOCAL OSCAR
+$nomb_cliente = isset($_POST["nomb_cliente"]) ? limpiarCadena($_POST["nomb_cliente"]) : "";// NO ESTA EN LOCAL OSCAR
 
 
 switch ($_GET["op"]) {
@@ -90,8 +90,14 @@ switch ($_GET["op"]) {
 		$data = array();
 
 		while ($reg = $rspta->fetch_object()) {
+			if($reg->condicionp=='Producción'){
+				$url='../reportes/exProduccion.php?id=';
+			}
+			else{
+				$url='../reportes/exPresupuesto.php?id=';
+			}
 			$data[] = array(
-				"0" => ($reg->estado == 'Aceptado') ? '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>' . '<button class="btn btn-danger" onclick="anular(' . $reg->idproduccion . ')"><i class="fa fa-close"></i></button>' : '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>',
+				"0" => (($reg->estado == 'Aceptado') ? '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>' . '<button class="btn btn-danger" onclick="anular(' . $reg->idproduccion . ')"><i class="fa fa-close"></i></button>' : '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>').'<a target="_blank" href="'.$url.$reg->idproduccion.'"><button class="btn btn-info"> <i class="fa fa-file"> </i></button> </a>',
 				"1" => $reg->condicionp,
 				"2" => $reg->nombre,
 				"3" => $reg->fecha,
