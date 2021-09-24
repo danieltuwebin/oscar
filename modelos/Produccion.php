@@ -82,7 +82,7 @@ Class Produccion
     } 
 
     public function producioncabecera($idproduccion){
-        $sql="SELECT p.idproduccion,p.condicionp,p.moneda,p.nomb_produccion,p.num_prod,p.idusuario,u.nombre as usuario,DATE(p.fecha_produccion) as fecha,p.ipu_produccion,p.total_produccion FROM produccion p  INNER JOIN usuario u ON p.idusuario=u.idusuario WHERE P.idproduccion='$idproduccion'";
+        $sql="SELECT p.idproduccion,p.condicionp,p.moneda,p.nomb_produccion,p.num_prod,p.idusuario,u.nombre as usuario,DATE(p.fecha_produccion) as fecha,p.ipu_produccion,p.total_produccion FROM produccion p  INNER JOIN usuario u ON p.idusuario=u.idusuario WHERE p.idproduccion='$idproduccion'";
         return ejecutarConsulta($sql);
     }
 

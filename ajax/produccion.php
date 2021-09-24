@@ -97,7 +97,11 @@ switch ($_GET["op"]) {
 				$url='../reportes/exPresupuesto.php?id=';
 			}
 			$data[] = array(
-				"0" => (($reg->estado == 'Aceptado') ? '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>' . '<button class="btn btn-danger" onclick="anular(' . $reg->idproduccion . ')"><i class="fa fa-close"></i></button>' : '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>').'<a target="_blank" href="'.$url.$reg->idproduccion.'"><button class="btn btn-info"> <i class="fa fa-file"> </i></button> </a>',
+				"0" => (($reg->estado == 'Aceptado') ? '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>' 
+				. '<button class="btn btn-danger" onclick="anular(' . $reg->idproduccion . ')"><i class="fa fa-close"></i></button>'
+				.'<a target="_blank" href="'.$url.$reg->idproduccion.'"><button class="btn btn-info"> <i class="fa fa-file"> </i></button> </a>'
+					: '<button class="btn btn-warning" onclick="mostrar(' . $reg->idproduccion . ')"><i class="fa fa-eye"></i></button>'),
+					//.'<a target="_blank" href="'.$url.$reg->idproduccion.'"><button class="btn btn-info"> <i class="fa fa-file"> </i></button> </a>',
 				"1" => $reg->condicionp,
 				"2" => $reg->nombre,
 				"3" => $reg->fecha,
